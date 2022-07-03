@@ -10,6 +10,7 @@ import { AuthPage } from './pages/auth';
 import { StageInfo, StagePage } from './pages/stage';
 
 import './index.css';
+import { LoginPage } from './pages/login';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -21,6 +22,7 @@ root.render(
         <Route path="/" element={<App />}>
           <Route path="/" element={<MainPage />} />
           <Route path="/auth" element={<AuthPage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/stage" element={<StagePage />}>
             <Route path=":stageId" element={<StageInfo />} />
           </Route>

@@ -1,15 +1,27 @@
 import { KangForm } from '../components/kangForm';
 import { KangFormProps } from '../components/kangForm';
+import * as Helpers from '../helpers';
 
 type RegFormData = {
   login: string;
   pass: string;
   passRepeat: string;
+  name: string;
+  phone: string;
+  city: string;
 };
 
 export const AuthPage = () => {
+  const onSubmit = async (d: RegFormData) => {
+    Helpers.Net.register(d)
+      .then((d) => {
+        console.log(d);
+      })
+      .catch((err) => console.log(err));
+  };
+
   const regFormProps: KangFormProps<RegFormData> = {
-    onSubmit: (d) => console.log('CB:', d),
+    onSubmit,
     inputs: [
       {
         prop: 'login',
@@ -51,11 +63,42 @@ export const AuthPage = () => {
           isEqualTo: { value: 'pass', errMsg: 'Not equal' },
         },
       },
+      {
+        prop: 'name',
+        label: 'User name',
+        validationRules: {
+          required: {
+            value: true,
+            errMsg: 'Name is req',
+          },
+        },
+      },
+      {
+        prop: 'phone',
+        label: 'phone num',
+        validationRules: {
+          required: {
+            value: true,
+            errMsg: 'Phone num is required',
+          },
+        },
+      },
+      {
+        prop: 'city',
+        label: 'city name',
+        validationRules: {
+          required: {
+            value: true,
+            errMsg: 'City is required',
+          },
+        },
+      },
     ],
   };
+
   return (
     <div>
-      <p>Auth page!</p>
+      <p>Register page!</p>
       <KangForm {...regFormProps} />
     </div>
   );

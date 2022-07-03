@@ -6,7 +6,8 @@ export function Header() {
       <Link to="/">
         <h1>KANGOROOO!!!</h1>
       </Link>
-      <Link to="/auth">Auth</Link>
+      <Link to="/auth">Register</Link>
+      <Link to="/login">Login</Link>
     </header>
   );
 }
